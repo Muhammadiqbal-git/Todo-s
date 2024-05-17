@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:todos_porto_2/app_resources.dart';
+import 'package:todos_porto_2/screens/home_screen.dart';
 import 'package:todos_porto_2/screens/login_screen.dart';
 import 'package:todos_porto_2/widgets/custom_button.dart';
 import 'package:todos_porto_2/widgets/custom_form.dart';
@@ -13,6 +14,7 @@ class RegisterScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomScaffold(
       body: SingleChildScrollView(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -48,7 +50,6 @@ class RegisterScreen extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
-            
             Container(
               alignment: Alignment.centerLeft,
               padding: const EdgeInsets.only(left: 15, bottom: 1),
@@ -99,7 +100,13 @@ class RegisterScreen extends StatelessWidget {
                 "Register",
                 style: boldText.copyWith(fontSize: 20),
               ),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(
+                    builder: (context) => HomeScreen(),
+                  ),
+                );
+              },
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,

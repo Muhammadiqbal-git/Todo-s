@@ -16,6 +16,7 @@ class _SplashScreensState extends State<SplashScreens> {
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

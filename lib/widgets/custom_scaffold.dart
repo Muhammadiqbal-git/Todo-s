@@ -55,8 +55,7 @@ class CustomScaffold extends StatelessWidget {
           ),
           SafeArea(
             child: Padding(
-              padding: EdgeInsets.fromLTRB(
-                  20, 0 + (appbar?.preferredSize.height ?? 0), 20, 0),
+              padding: EdgeInsets.only(top: 0 + (appbar?.preferredSize.height ?? 0)),
               child: body
             ),
           ),
