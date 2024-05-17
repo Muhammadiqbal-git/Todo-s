@@ -7,15 +7,13 @@ class CustomScaffold extends StatelessWidget {
   final Color? leafColor;
   final Color? backgroundColor;
   final PreferredSizeWidget? appbar;
-  final EdgeInsets? padding;
 
   const CustomScaffold(
       {super.key,
       required this.body,
       this.backgroundColor,
       this.leafColor,
-      this.appbar,
-      this.padding});
+      this.appbar});
 
   AppColors colors(context) => Theme.of(context).extension<AppColors>()!;
 

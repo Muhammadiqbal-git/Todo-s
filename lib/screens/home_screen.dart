@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todos_porto_2/app_resources.dart';
+import 'package:todos_porto_2/widgets/clock_view.dart';
 import 'package:todos_porto_2/widgets/custom_scaffold.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -8,7 +9,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
-      leafColor: colors(context).secondaryCr.withOpacity(0.35),
+      leafColor: colors(context).secondaryCr.withOpacity(0.45),
       backgroundColor: colors(context).primaryCr,
       body: Column(
         children: [
@@ -41,10 +42,8 @@ class HomeScreen extends StatelessWidget {
                   SizedBox(
                     height: getHeight(context, 5),
                   ),
-                  Container(
-                    height: 70,
-                    width: 70,
-                    color: colors(context).primaryCr,
+                  ClockView(
+                    size: getWidth(context, 30),
                   ),
                   const SizedBox(
                     height: 18,

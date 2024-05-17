@@ -16,47 +16,49 @@ class _SplashScreensState extends State<SplashScreens> {
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SvgPicture.asset(
-              "assets/imgs/onboarding_img.svg",
-              width: getWidth(context, 50),
-            ),
-            SizedBox(
-              height: getHeight(context, 10),
-            ),
-            Text(
-              "Get things done with TODO's",
-              style: boldText.copyWith(fontSize: 22),
-            ),
-            const Padding(
-              padding: EdgeInsets.symmetric(vertical: 4, horizontal: 30),
-              child: Text(
-                "Stay organized, set reminders, and achieve your goals effortlessly. Get started now!",
-                style: boldText,
-                textAlign: TextAlign.center,
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SvgPicture.asset(
+                "assets/imgs/onboarding_img.svg",
+                width: getWidth(context, 50),
               ),
-            ),
-            SizedBox(
-              height: getHeight(context, 6),
-            ),
-            CustomButton(
-              child: const Text(
-                "Get Started",
-                style: boldText,
+              SizedBox(
+                height: getHeight(context, 10),
               ),
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => LoginScreen(),
-                  ),
-                );
-              },
-            ),
-          ],
+              Text(
+                "Get things done with TODO's",
+                style: boldText.copyWith(fontSize: 22),
+              ),
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: 4, horizontal: 30),
+                child: Text(
+                  "Stay organized, set reminders, and achieve your goals effortlessly. Get started now!",
+                  style: boldText,
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              SizedBox(
+                height: getHeight(context, 6),
+              ),
+              CustomButton(
+                child: const Text(
+                  "Get Started",
+                  style: boldText,
+                ),
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => LoginScreen(),
+                    ),
+                  );
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );
