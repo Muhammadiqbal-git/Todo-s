@@ -47,7 +47,8 @@ class TodoCubit extends Cubit<TodoState> {
     try {
       if (currentState is TodoDoneState) {
         Todos data = await _api.addTodo(desc, id);
-        currentState.todoList.todoList.add(data);
+        int lastCompletedIndex = currentState.todoList.todoList.lastIndexWhere((element) => element.completed == true);
+        currentState.todoList.todoList.insert(lastCompletedIndex+1, data);
         emit(TodoDoneState(todoList: currentState.todoList));
       }
     } catch (e) {

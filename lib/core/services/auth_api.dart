@@ -8,14 +8,15 @@ import 'package:todos_porto_2/core/services/main_url.dart';
 import 'package:dio/dio.dart';
 
 class AuthApi {
-  final MainUrl _mainUrl = MainUrl();
-  final Dio _dio = Dio();
+  final MainUrl _mainUrl;
+  final Dio _dio;
 
+  AuthApi({Dio? dio, MainUrl? mainUrl}): _dio = dio ?? Dio(), _mainUrl = mainUrl ?? MainUrl();
   Future<LoginModel> login(String username, String password) async {
     String url = "${_mainUrl.mainUrl}/auth/login";
     try {
       print(url);
-      var data = await _dio.post(
+      Response data = await _dio.post(
         url,
         data: jsonEncode({
           'username': username,
