@@ -15,7 +15,6 @@ class AuthApi {
   Future<LoginModel> login(String username, String password) async {
     String url = "${_mainUrl.mainUrl}/auth/login";
     try {
-      print(url);
       Response data = await _dio.post(
         url,
         data: jsonEncode({
@@ -43,7 +42,6 @@ class AuthApi {
   Future<ProfileModel> getProfile() async {
     String url = "${_mainUrl.mainUrl}/auth/me";
     try {
-      print(url);
       Response data = await _dio.get(
         url,
         options:

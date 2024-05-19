@@ -20,7 +20,7 @@ void main() {
     authApi = AuthApi(dio: mockDio, mainUrl: mockMainUrl);
   });
 
-  group("AuthAPI", () {
+  group("AuthAPI Test", () {
     const username = "lgronaverp";
     const password = "4a1dAKDv9KB9";
     const url = "https://dummyjson.com/auth/login";
@@ -37,6 +37,7 @@ void main() {
     };
 
     test('Login and return LoginModel', () async {
+      //arrange
       when(mockMainUrl.mainUrl).thenReturn('https://dummyjson.com');
       when(mockDio.post(url,
               data: jsonEncode({'username': username, 'password': password})))
@@ -44,14 +45,16 @@ void main() {
               requestOptions: RequestOptions(path: url),
               data: loginResponse,
               statusCode: 200));
+      //act
       final result = await authApi.login(username, password);
-
+      //assert
       expect(result, isA<LoginModel>());
       expect(result.username, username);
       verify(mockMainUrl.setToken = result.token).called(1);
     });
 
     test('throws NetworkException on Dio Error', () async {
+      //arrange
       when(mockMainUrl.mainUrl).thenReturn('https://dummyjson.com');
       when(mockDio.post(url,
               data: jsonEncode({"username": username, "password": password})))
@@ -59,6 +62,7 @@ void main() {
               requestOptions: RequestOptions(path: url),
               data: "error",
               statusCode: 400));
+      //act and assert
       expect(() => authApi.login(username, password),
           throwsA(isA<NetworkException>()));
     });
