@@ -5,6 +5,7 @@ class CustomForm extends StatefulWidget {
   final TextEditingController textEditingController;
   final TextInputAction? textInputAction;
   final double? width;
+  final double? height;
   final String? hintText;
   final Color? backgroundColor;
   final double? borderRadius;
@@ -23,6 +24,7 @@ class CustomForm extends StatefulWidget {
     required this.textEditingController,
     this.textInputAction,
     this.width,
+    this.height,
     this.hintText,
     this.backgroundColor,
     this.borderRadius,
@@ -52,7 +54,7 @@ class _CustomFormState extends State<CustomForm> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 48,
+      height: widget.height ?? 48,
       width: widget.width ?? double.maxFinite,
       decoration: BoxDecoration(
           color: widget.backgroundColor ?? Colors.white,

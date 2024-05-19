@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todos_porto_2/cubits/auth_cubit.dart';
 import 'package:todos_porto_2/screens/splash_screen.dart';
 import 'package:todos_porto_2/theme.dart';
 
@@ -12,32 +14,42 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Todo\' list',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a blue toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSwatch(accentColor: const Color(0XFF62D2C3)),
-        useMaterial3: true,
-        extensions: const <ThemeExtension<AppColors>>[
-          AppColors(primaryCr: Color(0xFF62D2C3), secondaryCr: Color(0xFFE5FFFC), backgroundCr: Color(0xFFEEEEEE), whiteCr: Color(0xFFFFFFFF))
-        ]
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => AuthCubit(),
+        ),
+      ],
+      child: MaterialApp(
+        title: 'Todo\' list',
+        theme: ThemeData(
+            // This is the theme of your application.
+            //
+            // TRY THIS: Try running your application with "flutter run". You'll see
+            // the application has a blue toolbar. Then, without quitting the app,
+            // try changing the seedColor in the colorScheme below to Colors.green
+            // and then invoke "hot reload" (save your changes or press the "hot
+            // reload" button in a Flutter-supported IDE, or press "r" if you used
+            // the command line to start the app).
+            //
+            // Notice that the counter didn't reset back to zero; the application
+            // state is not lost during the reload. To reset the state, use hot
+            // restart instead.
+            //
+            // This works for code too, not just values: Most code changes can be
+            // tested with just a hot reload.
+            colorScheme:
+                ColorScheme.fromSwatch(accentColor: const Color(0XFF62D2C3)),
+            useMaterial3: true,
+            extensions: const <ThemeExtension<AppColors>>[
+              AppColors(
+                  primaryCr: Color(0xFF62D2C3),
+                  secondaryCr: Color(0xFFE5FFFC),
+                  backgroundCr: Color(0xFFEEEEEE),
+                  whiteCr: Color(0xFFFFFFFF))
+            ]),
+        home: const SplashScreens(),
       ),
-      home: const SplashScreens(),
     );
   }
 }
-

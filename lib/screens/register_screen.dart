@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:todos_porto_2/app_resources.dart';
-import 'package:todos_porto_2/screens/home_screen.dart';
 import 'package:todos_porto_2/screens/login_screen.dart';
 import 'package:todos_porto_2/widgets/custom_button.dart';
 import 'package:todos_porto_2/widgets/custom_form.dart';
@@ -101,11 +99,6 @@ class RegisterScreen extends StatelessWidget {
                 style: boldText.copyWith(fontSize: 20),
               ),
               onPressed: () {
-                Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(
-                    builder: (context) => HomeScreen(),
-                  ),
-                );
               },
             ),
             const SizedBox(height: 5,),

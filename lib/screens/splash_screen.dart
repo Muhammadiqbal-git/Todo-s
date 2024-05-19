@@ -5,14 +5,11 @@ import 'package:todos_porto_2/screens/login_screen.dart';
 import 'package:todos_porto_2/widgets/custom_button.dart';
 import 'package:todos_porto_2/widgets/custom_scaffold.dart';
 
-class SplashScreens extends StatefulWidget {
-  const SplashScreens({Key? key}) : super(key: key);
 
-  @override
-  State<SplashScreens> createState() => _SplashScreensState();
-}
 
-class _SplashScreensState extends State<SplashScreens> {
+class SplashScreens extends StatelessWidget {
+  const SplashScreens({super.key});
+
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
@@ -45,14 +42,14 @@ class _SplashScreensState extends State<SplashScreens> {
                 height: getHeight(context, 6),
               ),
               CustomButton(
-                child: const Text(
+                child: Text(
                   "Get Started",
-                  style: boldText,
+                  style: boldText.copyWith(fontSize: 20),
                 ),
                 onPressed: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) => LoginScreen(),
+                      builder: (context) => const LoginScreen(),
                     ),
                   );
                 },
