@@ -12,8 +12,6 @@ class TodoCubit extends Cubit<TodoState> {
     emit(TodoLoadingState());
     try {
       TodosModel data = await _api.getTodoList(id);
-      await Future.delayed(Duration(seconds: 2));
-      print(data);
       emit(TodoDoneState(todoList: data));
     } catch (e) {
       emit(TodoErrorState());
@@ -29,7 +27,6 @@ class TodoCubit extends Cubit<TodoState> {
         currentState.todoList.todoList
             .removeWhere((element) => element.id == todoId);
         Todos data = await _api.updateTodo(todoId, !temp.completed);
-        print(data.completed);
         if (data.completed) {
           currentState.todoList.todoList.insert(0, data);
         } else {
@@ -46,6 +43,9 @@ class TodoCubit extends Cubit<TodoState> {
     var currentState = state;
     try {
       if (currentState is TodoDoneState) {
+        if (desc.isEmpty) {
+          throw Exception("Cant add todo with empty text");
+        }
         Todos data = await _api.addTodo(desc, id);
         int lastCompletedIndex = currentState.todoList.todoList.lastIndexWhere((element) => element.completed == true);
         currentState.todoList.todoList.insert(lastCompletedIndex+1, data);

@@ -7,7 +7,6 @@ class AppException implements Exception{
   AppException(this.message, this.code);
   @override
   String toString() {
-    // TODO: implement toString
     return "AppException: $message (code: $code)";
   }
 }

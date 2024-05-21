@@ -5,7 +5,6 @@ import 'package:todos_porto_2/app_resources.dart';
 import 'package:todos_porto_2/cubits/profile_cubit.dart';
 import 'package:todos_porto_2/cubits/todo_cubit.dart';
 import 'package:todos_porto_2/widgets/clock_view.dart';
-import 'package:todos_porto_2/widgets/custom_button.dart';
 import 'package:todos_porto_2/widgets/custom_form.dart';
 import 'package:todos_porto_2/widgets/custom_scaffold.dart';
 
@@ -159,56 +158,76 @@ class _HomeScreenState extends State<HomeScreen> {
                         BlocBuilder<ProfileCubit, ProfileState>(
                           builder: (context, state) {
                             if (state is ProfileDoneState) {
-                              return InkWell(
-                                onTap: () {
-                                  //
-                                  showDialog(
-                                    context: context,
-                                    builder: (dialogContext) => AlertDialog(
-                                      backgroundColor:
-                                          colors(context).secondaryCr,
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(20)),
-                                      title: const Text(
-                                        "Create todo",
+                              return BlocListener<TodoCubit, TodoState>(
+                                listener: (context, todoState) {
+                                  if (todoState is TodoErrorState) {
+                                    showDialog(
+                                      context: context,
+                                      builder: (context) => AlertDialog(
+                                        backgroundColor: colors(context).secondaryCr,
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(20)),
+                                        title: const Text("Whoops"),
+                                        titleTextStyle: boldText.copyWith(fontSize: 16),
+                                        content: const Text("Cant add todo with an empty text", style: normalText,),
                                       ),
-                                      titleTextStyle:
-                                          boldText.copyWith(fontSize: 16),
-                                      content: CustomForm(
+                                    ).then((value) => context.read<TodoCubit>().getTodoList(state.profileData.id));
+                                  }
+                                },
+                                child: InkWell(
+                                  onTap: () {
+                                    //
+                                    showDialog(
+                                      context: context,
+                                      builder: (dialogContext) => AlertDialog(
+                                        backgroundColor:
+                                            colors(context).secondaryCr,
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(20)),
+                                        title: const Text(
+                                          "Create todo",
+                                        ),
+                                        titleTextStyle:
+                                            boldText.copyWith(fontSize: 16),
+                                        content: CustomForm(
                                           height: 48,
                                           width: getWidth(context, 45),
                                           textEditingController: _todoText,
                                           hintText: "Do something!!",
-                                          ),
-                                      contentPadding:
-                                          EdgeInsets.fromLTRB(24, 20, 24, 0),
-                                      actionsPadding: EdgeInsets.symmetric(
-                                          vertical: 9, horizontal: 24),
-                                      actions: [
-                                        TextButton(
-                                            onPressed: () {
-                                              context
-                                                  .read<TodoCubit>()
-                                                  .addTodoList(_todoText.text,
-                                                      state.profileData.id);
-                                              _todoText.clear();
-                                              Navigator.pop(dialogContext);
-                                            },
-                                            child: Text("Create",
-                                                style: normalText)),
-                                      ],
-                                    ),
-                                  );
-                                },
-                                child: Icon(
-                                  Icons.add_circle_outline_outlined,
-                                  color: colors(context).primaryCr,
+                                        ),
+                                        contentPadding:
+                                            const EdgeInsets.fromLTRB(
+                                                24, 20, 24, 0),
+                                        actionsPadding:
+                                            const EdgeInsets.symmetric(
+                                                vertical: 9, horizontal: 24),
+                                        actions: [
+                                          TextButton(
+                                              onPressed: () {
+                                                context
+                                                    .read<TodoCubit>()
+                                                    .addTodoList(_todoText.text,
+                                                        state.profileData.id);
+                                                _todoText.clear();
+                                                Navigator.pop(dialogContext);
+                                              },
+                                              child: const Text("Create",
+                                                  style: normalText)),
+                                        ],
+                                      ),
+                                    );
+                                  },
+                                  child: Icon(
+                                    Icons.add_circle_outline_outlined,
+                                    color: colors(context).primaryCr,
+                                  ),
                                 ),
                               );
                             } else {
                               return const InkWell(
-                                child: const Icon(
+                                child: Icon(
                                   Icons.add_circle_outline_outlined,
                                   color: Colors.black45,
                                 ),

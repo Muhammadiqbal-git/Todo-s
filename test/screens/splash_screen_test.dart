@@ -2,14 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/mockito.dart';
 import 'package:todos_porto_2/cubits/auth_cubit.dart';
 import 'package:todos_porto_2/screens/login_screen.dart';
 import 'package:todos_porto_2/screens/splash_screen.dart';
 import 'package:todos_porto_2/theme.dart';
 import 'package:todos_porto_2/widgets/custom_button.dart';
-
-import '../helper/mock_helper.mocks.dart';
 
 void main() {
   group("Onboarding Screen Test", () {

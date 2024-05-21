@@ -1,5 +1,4 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:todos_porto_2/core/models/login_model.dart';
 import 'package:todos_porto_2/core/services/auth_api.dart';
 
 part 'auth_state.dart';

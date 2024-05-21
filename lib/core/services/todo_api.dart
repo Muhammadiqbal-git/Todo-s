@@ -26,17 +26,14 @@ class TodoAPI {
   }
 
   Future<Todos> updateTodo(int todoId, bool status) async {
-    print("update todo");
     String url = "${_mainUrl.mainUrl}/todos/$todoId";
     try {
       Response data =
           await _dio.put(url, data: jsonEncode({'completed': status}));
       return Todos.fromJson(data.data);
     } on DioException catch (e) {
-      print(e.response);
       throw NetworkException(e.message ?? "");
     } catch (e) {
-      print(e);
       if (e is NetworkException) {
         throw NetworkException(e.message);
       } else {
@@ -46,7 +43,6 @@ class TodoAPI {
   }
 
   Future<Todos> addTodo(String todoDesc, int id) async {
-    print("add todo");
     String url = "${_mainUrl.mainUrl}/todos/add";
     try {
       Response data = await _dio.post(url,
@@ -54,10 +50,8 @@ class TodoAPI {
               jsonEncode({'todo': todoDesc, 'completed': false, 'userId': id}));
       return Todos.fromJson(data.data);
     } on DioException catch (e) {
-      print(e.response);
       throw NetworkException(e.message ?? "");
     } catch (e) {
-      print(e);
       if (e is NetworkException) {
         throw NetworkException(e.message);
       } else {

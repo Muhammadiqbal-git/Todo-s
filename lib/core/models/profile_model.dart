@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 class ProfileModel {
     final int id;
     final String firstName;

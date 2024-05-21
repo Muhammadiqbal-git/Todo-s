@@ -1,6 +1,4 @@
 import 'dart:convert';
-import 'dart:io';
-
 import 'package:todos_porto_2/core/exceptions/app_exception.dart';
 import 'package:todos_porto_2/core/models/login_model.dart';
 import 'package:todos_porto_2/core/models/profile_model.dart';
