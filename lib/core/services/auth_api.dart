@@ -13,6 +13,7 @@ class AuthApi {
 
   AuthApi({Dio? dio, MainUrl? mainUrl}): _dio = dio ?? Dio(), _mainUrl = mainUrl ?? MainUrl();
   Future<LoginModel> login(String username, String password) async {
+    // _dio.close();
     String url = "${_mainUrl.mainUrl}/auth/login";
     try {
       Response data = await _dio.post(
@@ -31,6 +32,7 @@ class AuthApi {
     } on DioException catch (e) {
       throw NetworkException(e.message ?? "");
     } catch (e) {
+
       if (e is NetworkException) {
         throw NetworkException(e.message);
       } else {

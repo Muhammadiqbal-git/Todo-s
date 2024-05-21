@@ -28,13 +28,13 @@ class SplashScreens extends StatelessWidget {
               ),
               Text(
                 "Get things done with TODO's",
-                style: boldText.copyWith(fontSize: 22),
+                style: boldText.copyWith(fontSize: 20), textAlign: TextAlign.center,
               ),
               const Padding(
                 padding: EdgeInsets.symmetric(vertical: 4, horizontal: 30),
                 child: Text(
                   "Stay organized, set reminders, and achieve your goals effortlessly. Get started now!",
-                  style: boldText,
+                  style: semiBoldText,
                   textAlign: TextAlign.center,
                 ),
               ),

@@ -6,7 +6,7 @@ import 'package:todos_porto_2/core/models/login_model.dart';
 import '../../helper/json_helper.dart';
 
 void main() {
-  group("Login Model Test", () {
+  group("Model Test", () {
     String path = "helper/dummies_data/login_resp.json";
     String username = "lgronaverp";
     test('Login model from json', () async {
@@ -19,4 +19,5 @@ void main() {
       expect(result.username, username);
     });
   });
+  
 }
